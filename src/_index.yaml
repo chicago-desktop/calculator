@@ -1,0 +1,79 @@
+version: "1.0"
+namespace: windows.calculator
+
+# The Windows 95 calculator in standard view, a module of the Windows 95
+# shell (windows/shell). The arithmetic is `engine`, pure and with no screen;
+# the window is built on the shell SDK, so it computes both in cells and in
+# pixels and has no layout or paint of its own.
+#
+# Keep the comments of this file free of an unquoted `: ` — a colon followed
+# by a space inside a meta.comment or a YAML comment value breaks the parse
+# of the whole index, and the boot with it. Quote such comments.
+
+entries:
+  - name: definition
+    kind: ns.definition
+    meta:
+      title: Calculator
+      description: The Windows 95 calculator for the terminal desktop — standard view with memory, computes like a desk calculator; a window on the shell SDK.
+
+  # ─── Dependencies ────────────────────────────────────────────────────
+  # A compatibility range, never an exact version: the lock holds the exact
+  # one. `*` is any published version.
+  - version: "*"
+    name: dep.windows.shell
+    kind: ns.dependency
+    meta:
+      comment: The Windows 95 shell — its SDK lays out and draws the window, its icons bring the calculator's picture.
+    component: windows/shell
+
+  - version: "*"
+    name: dep.windows.tui_desktop
+    kind: ns.dependency
+    meta:
+      comment: The desktop base — the compositor that owns the window's frame, size and input.
+    component: windows/tui-desktop
+
+  # windows.calculator:engine
+  - name: engine
+    kind: library.lua
+    meta:
+      comment: Calculator arithmetic — desktop-style, an operation applies immediately; the display puts a dot after an integer, failures are phrases; keys map to the same buttons as the mouse.
+    source: file://engine.lua
+
+  # windows.calculator:window
+  #
+  # The Start menu finds a `process.lua` with `meta.type: tui_desktop.window`.
+  # `image` is a picture name the shell's own icon set knows (`calculator`),
+  # `icon` its character for a terminal without graphics, `width`/`height`
+  # the outer size in cells; `resizable: false` fixes it, so the frame has no
+  # "maximize". `pixel_render` + `pixel_state` make the window draw through
+  # the shell's shared renderer in graphics mode; in cells the same process
+  # draws.
+  - name: window
+    kind: process.lua
+    meta:
+      type: tui_desktop.window
+      title: Calculator
+      image: calculator
+      icon: "▦"
+      group: Programs
+      order: 20
+      window_type: app
+      resizable: false
+      width: 29
+      height: 16
+      pixel_render: windows.shell.sdk:render
+      pixel_state: windows.calculator:window
+      comment: Calculator in the Windows 95 look — standard view with memory, computes like a desktop calculator; a window on the shell SDK.
+    source: file://window.lua
+    method: main
+    # The shell's policy for a view window's state provider: the process
+    # context, the compositor's name in the process registry, sending it
+    # the state. The calculator reads nothing else.
+    security:
+      policies: [windows.shell.security:view_state]
+    imports:
+      app: windows.shell.sdk:app
+      ui: windows.shell.sdk:ui
+      engine: windows.calculator:engine

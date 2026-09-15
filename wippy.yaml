@@ -1,0 +1,29 @@
+organization: windows
+module: calculator
+description: The Windows 95 calculator for the terminal desktop — a module of the Windows 95 shell (windows/shell); standard view with memory, a pure arithmetic engine and a window on the shell SDK.
+license: MIT
+repository: https://github.com/wippy-windows/calculator
+homepage: https://wippy.ai
+keywords:
+  - kickside
+  - tui
+  - terminal
+  - desktop
+  - windows
+  - calculator
+# No `version:` here — the publisher picks it (`wippy publish` bumps the
+# latest published one). A published version is immutable.
+exclude_meta:
+  type:
+    - test
+exclude:
+  - "wippy.lock"
+  - "app:**"
+  - "app.env:**"
+  - "test/**"
+  - "test:**"
+  - ".wippy/**"
+  - ".wippy:**"
+# `wippy publish` packs the entries of src/ and embeds only the fs.directory
+# entries named under `embed:`. The calculator has no pictures of its own —
+# its icon is the shell's `calculator` — so there is nothing to embed.
