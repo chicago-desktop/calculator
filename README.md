@@ -1,7 +1,7 @@
 # chicago/calculator — Calculator
 
-The Windows 95 calculator for the terminal desktop: a module of the Windows
-95 shell ([chicago/shell](https://github.com/chicago-desktop/shell) on
+Calculator for the Chicago desktop, in the look of the mid-nineties desktops: a
+module of the Chicago shell ([chicago/shell](https://github.com/chicago-desktop/shell) on
 [chicago/tui-desktop](https://github.com/chicago-desktop/tui-desktop)). An
 application that depends on it and runs the shell gets **Calculator** in
 Start → Programs, with its icon; nothing else to wire.
@@ -45,8 +45,7 @@ clipboard, so there is no Edit, and with a single view there is no View.
 - `chicago.calculator:images` — the module carries its own pictures, an image
   pack of the shell (`meta.type: chicago.images`) under `assets/images/{32,16}`:
   `calculator`, named `chicago.calculator:images/calculator` by the entry and
-  the About sheet; copied from the shell's icon set (Microsoft's artwork from
-  `shell32.dll`, see `assets/images/SOURCE.md`).
+  the About sheet; copied from the shell's icon set (an interim icon set, see `assets/images/SOURCE.md`).
 - `chicago.calculator:window` — the process on the shell's SDK
   (`chicago.shell.sdk:app`): the key grid as a component tree, one layout for
   pixels (the original's 4×2-cell keys) and one for cells (one-row keys in
@@ -61,15 +60,15 @@ the application beyond the shell's `chicago.shell.security:view_state` policy.
 ## Developing
 
 ```bash
-make setup     # resolve the dependencies from the Hub (once, and after changing them)
+make setup     # resolve the dependencies (once, and after changing them)
 make check     # the repository's invariants
 make lint      # late locals, then wippy lint of this namespace and the harness
 make test      # the harness in test/: the engine, the window, a shot in test/shots/
-make publish   # to the Hub, after `wippy auth login`
+make publish   # publish a release, after `wippy auth login`
 ```
 
 `make test` runs `wippy test --host wippy.terminal:host` in `test/`, a tiny
-application that boots the module together with the shell from the Hub (the
+application that boots the module together with the shell, resolved from its GitHub repository by tag (the
 harness's gateway listens on :19241 so it can run beside the other modules'
 harnesses). `test/src/engine_test.lua` checks the arithmetic, the key map,
 the grid in pixels and in cells, every caption drawn whole at 8 to 10 px
@@ -92,11 +91,11 @@ rules of this repository are in [AGENTS.md](AGENTS.md).
 
 Extracted from the shell (`chicago.shell.calc`, chicago/shell 0.1.0) into a
 module of its own, made from
-[the Windows module template](https://github.com/chicago-desktop/module-template).
+[the Chicago module template](https://github.com/chicago-desktop/module-template).
 Repository: https://github.com/chicago-desktop/calculator.
 
 ## Licence
 
-MIT. The calculator's icon in `assets/images` is Microsoft's artwork
-(`shell32.dll`), copied from the shell's icon set, and is not covered by the
-licence.
+The icon set is an interim one and is being replaced with original pixel art
+([chicago-desktop/shell#1](https://github.com/chicago-desktop/shell/issues/1));
+the code is MIT.

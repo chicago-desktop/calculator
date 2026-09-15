@@ -1,7 +1,7 @@
 version: "1.0"
 namespace: chicago.calculator
 
-# The Windows 95 calculator in standard view, a module of the Windows 95
+# The Calculator in the mid-nineties standard view, a module of the Chicago
 # shell (chicago/shell). The arithmetic is `engine`, pure and with no screen;
 # the window is built on the shell SDK, so it computes both in cells and in
 # pixels and has no layout or paint of its own.
@@ -15,7 +15,7 @@ entries:
     kind: ns.definition
     meta:
       title: Calculator
-      description: The Windows 95 calculator for the terminal desktop — standard view with memory, computes like a desk calculator; a window on the shell SDK.
+      description: Calculator for the Chicago desktop — standard view with memory, computes like a desk calculator; a window on the shell SDK.
 
   # ─── Dependencies ────────────────────────────────────────────────────
   # A compatibility range, never an exact version: the lock holds the exact
@@ -24,7 +24,7 @@ entries:
     name: dep.chicago.shell
     kind: ns.dependency
     meta:
-      comment: The Windows 95 shell — its SDK lays out and draws the window, its image packs bring the calculator's picture.
+      comment: The Chicago shell — its SDK lays out and draws the window, its image packs bring the calculator's picture.
     component: chicago/shell
 
   - version: "*"
@@ -44,7 +44,7 @@ entries:
     kind: fs.directory
     meta:
       type: chicago.images
-      comment: "The calculator's pictures — its icon at 32 and 16 px, an image pack of the shell; Microsoft's artwork, see assets/images/SOURCE.md."
+      comment: "The calculator's pictures — its icon at 32 and 16 px, an image pack of the shell; an interim icon set, see assets/images/SOURCE.md."
     base: module
     directory: ./assets/images
     auto_init: false

@@ -1,6 +1,6 @@
 organization: chicago
 module: calculator
-description: The Windows 95 calculator for the terminal desktop — a module of the Windows 95 shell (chicago/shell); standard view with memory, a pure arithmetic engine and a window on the shell SDK.
+description: Calculator for the Chicago desktop — the mid-nineties standard view with memory, a pure arithmetic engine and a window on the shell SDK (chicago/shell).
 license: MIT
 repository: https://github.com/chicago-desktop/calculator
 homepage: https://wippy.ai
@@ -9,7 +9,7 @@ keywords:
   - tui
   - terminal
   - desktop
-  - windows
+  - chicago
   - calculator
 # No `version:` here — the publisher picks it (`wippy publish` bumps the
 # latest published one). A published version is immutable.
