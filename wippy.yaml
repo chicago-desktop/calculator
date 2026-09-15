@@ -25,5 +25,7 @@ exclude:
   - ".wippy/**"
   - ".wippy:**"
 # `wippy publish` packs the entries of src/ and embeds only the fs.directory
-# entries named under `embed:`. The calculator has no pictures of its own —
-# its icon is the shell's `calculator` — so there is nothing to embed.
+# entries named under `embed:`. The image pack lives outside src/ and is
+# packed only when named here.
+embed:
+  - windows.calculator:images

@@ -24,7 +24,7 @@ entries:
     name: dep.windows.shell
     kind: ns.dependency
     meta:
-      comment: The Windows 95 shell — its SDK lays out and draws the window, its icons bring the calculator's picture.
+      comment: The Windows 95 shell — its SDK lays out and draws the window, its image packs bring the calculator's picture.
     component: windows/shell
 
   - version: "*"
@@ -33,6 +33,21 @@ entries:
     meta:
       comment: The desktop base — the compositor that owns the window's frame, size and input.
     component: windows/tui-desktop
+
+  # windows.calculator:images
+  #
+  # The shell finds an image pack in the registry by its meta.type and names a
+  # picture `<entry>/<file>`: `windows.calculator:images/calculator`. PNG in
+  # assets/images/32 and 16; packed only because wippy.yaml lists the entry
+  # under `embed:`.
+  - name: images
+    kind: fs.directory
+    meta:
+      type: windows.images
+      comment: "The calculator's pictures — its icon at 32 and 16 px, an image pack of the shell; Microsoft's artwork, see assets/images/SOURCE.md."
+    base: module
+    directory: ./assets/images
+    auto_init: false
 
   # windows.calculator:engine
   - name: engine
@@ -44,7 +59,7 @@ entries:
   # windows.calculator:window
   #
   # The Start menu finds a `process.lua` with `meta.type: tui_desktop.window`.
-  # `image` is a picture name the shell's own icon set knows (`calculator`),
+  # `image` is a picture of the module's own pack (`<entry>/<file>`),
   # `icon` its character for a terminal without graphics, `width`/`height`
   # the outer size in cells; `resizable: false` fixes it, so the frame has no
   # "maximize". `pixel_render` + `pixel_state` make the window draw through
@@ -55,7 +70,7 @@ entries:
     meta:
       type: tui_desktop.window
       title: Calculator
-      image: calculator
+      image: windows.calculator:images/calculator
       icon: "▦"
       group: Programs
       order: 20

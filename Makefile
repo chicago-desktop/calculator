@@ -66,8 +66,8 @@ release-check: verify
 	$(WIPPY) auth status
 	$(WIPPY) publish --dry-run --create --module-visibility $(VIS) --module-type $(TYPE)
 
-# `wippy publish` packs src/; the calculator has nothing to embed (its icon
-# is the shell's), and check-module.mjs verifies that stays true.
+# `wippy publish` packs src/ and the image pack wippy.yaml names under
+# `embed:` (assets/images); check-module.mjs verifies the list is complete.
 publish:
 	node scripts/check-module.mjs
 	$(WIPPY) auth status

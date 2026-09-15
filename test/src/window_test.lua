@@ -1,5 +1,5 @@
 -- The calculator's process: the registry entry the Start menu reads, the
--- shell's calculator icon found at both sizes, the process running the
+-- module's own calculator icon found at both sizes, the process running the
 -- engine, and a shot (test/shots/calculator.png) drawn by the shell's own
 -- renderer — evidence for the eye, next to the checks for the machine.
 local test = require("test")
@@ -32,12 +32,12 @@ end
 
 local function define_tests()
     test.describe("Calculator window", function()
-        test.it("is a fixed-size window on the shell SDK in Programs, with the shell's calculator icon at both sizes", function()
+        test.it("is a fixed-size window on the shell SDK in Programs, with its own calculator icon at both sizes", function()
             local entry = assert(registry.get("windows.calculator:window"))
             local meta: any = entry.meta
             test.eq(table.concat({meta.type, meta.title, meta.group, meta.image, meta.window_type,
                 meta.pixel_render, meta.pixel_state}, "|"),
-                "tui_desktop.window|Calculator|Programs|calculator|app|windows.shell.sdk:render|windows.calculator:window")
+                "tui_desktop.window|Calculator|Programs|windows.calculator:images/calculator|app|windows.shell.sdk:render|windows.calculator:window")
             test.eq(tostring(meta.width) .. "x" .. tostring(meta.height), "29x16", "the outer size in cells")
             test.is_true(meta.resizable == false, "a fixed size: the frame gets no \"maximize\"")
             for _, size in ipairs({32, 16}) do

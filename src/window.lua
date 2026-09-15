@@ -86,7 +86,7 @@ end
 
 function definition.view(state: any, context: any): any
     if state.about then
-        return ui.message({title = "Calculator", image = "calculator", icon = "▦", ok = "about_ok",
+        return ui.message({title = "Calculator", image = "windows.calculator:images/calculator", icon = "▦", ok = "about_ok",
             lines = {"Standard view, memory.", "Counts as a desk", "calculator does."}})
     end
     -- `native` is set by the SDK loop when the window is drawn in pixels.

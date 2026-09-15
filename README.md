@@ -4,7 +4,7 @@ The Windows 95 calculator for the terminal desktop: a module of the Windows
 95 shell ([windows/shell](https://github.com/wippy-windows/windows) on
 [windows/tui-desktop](https://github.com/wippy-windows/tui-desktop)). An
 application that depends on it and runs the shell gets **Calculator** in
-Start → Programs, with the shell's own calculator icon; nothing else to wire.
+Start → Programs, with its icon; nothing else to wire.
 
 It is the standard view: a display, the Back / CE / C row with the memory box,
 and four rows of keys with the memory column (MC, MR, MS, M+) on the left —
@@ -42,6 +42,11 @@ clipboard, so there is no Edit, and with a single view there is no View.
   `format(value)` and `key(event)`, the map from a keyboard event to a
   button id. Buttons are named by identifiers (`add`, `sqrt`, `mplus`), not
   by captions; the tests exercise it without a compositor.
+- `windows.calculator:images` — the module carries its own pictures, an image
+  pack of the shell (`meta.type: windows.images`) under `assets/images/{32,16}`:
+  `calculator`, named `windows.calculator:images/calculator` by the entry and
+  the About sheet; copied from the shell's icon set (Microsoft's artwork from
+  `shell32.dll`, see `assets/images/SOURCE.md`).
 - `windows.calculator:window` — the process on the shell's SDK
   (`windows.shell.sdk:app`): the key grid as a component tree, one layout for
   pixels (the original's 4×2-cell keys) and one for cells (one-row keys in
@@ -49,10 +54,9 @@ clipboard, so there is no Edit, and with a single view there is no View.
   About sheet. Its registry entry (`meta.type: tui_desktop.window`) is what
   the Start menu reads.
 
-The module depends on `windows/shell` (the SDK, the icon) and
-`windows/tui-desktop` (the compositor). It has no pictures of its own, reads
-no files and asks nothing of the application beyond the shell's
-`windows.shell.security:view_state` policy.
+The module depends on `windows/shell` (the SDK, the image packs) and
+`windows/tui-desktop` (the compositor). It reads no files and asks nothing of
+the application beyond the shell's `windows.shell.security:view_state` policy.
 
 ## Developing
 
@@ -93,4 +97,6 @@ Repository: https://github.com/wippy-windows/calculator.
 
 ## Licence
 
-MIT. The calculator's icon belongs to the shell, not to this repository.
+MIT. The calculator's icon in `assets/images` is Microsoft's artwork
+(`shell32.dll`), copied from the shell's icon set, and is not covered by the
+licence.
