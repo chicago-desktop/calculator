@@ -78,10 +78,11 @@ entry, the icon, the process running the engine, and writes
 after `12 × 3.5 =`. Look at the picture: the geometry checks do not see a
 wrong colour.
 
-**A local build of the runtime fork is required**
-([chicago-desktop/runtime](https://github.com/chicago-desktop/runtime), branch
-`wippy-projects`): the shell declares the `gfx` module, which the release
-runtime does not have, and `wippy` from PATH does not load the shell at all.
+**A build of the runtime fork from its releases is required**
+([chicago-desktop/runtime](https://github.com/chicago-desktop/runtime),
+`v0.3.40a-chicago.2` or newer): it resolves the shell and the base from
+GitHub by tag, and the shell declares the `gfx` module, which the release
+runtime does not have — `wippy` from PATH does not load the shell at all.
 The Makefile's `WIPPY` names the build; override it with `make test WIPPY=…`.
 
 The window SDK is documented in [docs/sdk.md](docs/sdk.md), a copy of the
