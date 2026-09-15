@@ -1,8 +1,8 @@
-organization: windows
+organization: chicago
 module: calculator
-description: The Windows 95 calculator for the terminal desktop — a module of the Windows 95 shell (windows/shell); standard view with memory, a pure arithmetic engine and a window on the shell SDK.
+description: The Windows 95 calculator for the terminal desktop — a module of the Windows 95 shell (chicago/shell); standard view with memory, a pure arithmetic engine and a window on the shell SDK.
 license: MIT
-repository: https://github.com/wippy-windows/calculator
+repository: https://github.com/chicago-desktop/calculator
 homepage: https://wippy.ai
 keywords:
   - kickside
@@ -28,4 +28,4 @@ exclude:
 # entries named under `embed:`. The image pack lives outside src/ and is
 # packed only when named here.
 embed:
-  - windows.calculator:images
+  - chicago.calculator:images

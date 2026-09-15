@@ -1,8 +1,8 @@
 version: "1.0"
-namespace: windows.calculator
+namespace: chicago.calculator
 
 # The Windows 95 calculator in standard view, a module of the Windows 95
-# shell (windows/shell). The arithmetic is `engine`, pure and with no screen;
+# shell (chicago/shell). The arithmetic is `engine`, pure and with no screen;
 # the window is built on the shell SDK, so it computes both in cells and in
 # pixels and has no layout or paint of its own.
 #
@@ -21,42 +21,42 @@ entries:
   # A compatibility range, never an exact version: the lock holds the exact
   # one. `*` is any published version.
   - version: "*"
-    name: dep.windows.shell
+    name: dep.chicago.shell
     kind: ns.dependency
     meta:
       comment: The Windows 95 shell — its SDK lays out and draws the window, its image packs bring the calculator's picture.
-    component: windows/shell
+    component: chicago/shell
 
   - version: "*"
-    name: dep.windows.tui_desktop
+    name: dep.chicago.tui_desktop
     kind: ns.dependency
     meta:
       comment: The desktop base — the compositor that owns the window's frame, size and input.
-    component: windows/tui-desktop
+    component: chicago/tui-desktop
 
-  # windows.calculator:images
+  # chicago.calculator:images
   #
   # The shell finds an image pack in the registry by its meta.type and names a
-  # picture `<entry>/<file>`: `windows.calculator:images/calculator`. PNG in
+  # picture `<entry>/<file>`: `chicago.calculator:images/calculator`. PNG in
   # assets/images/32 and 16; packed only because wippy.yaml lists the entry
   # under `embed:`.
   - name: images
     kind: fs.directory
     meta:
-      type: windows.images
+      type: chicago.images
       comment: "The calculator's pictures — its icon at 32 and 16 px, an image pack of the shell; Microsoft's artwork, see assets/images/SOURCE.md."
     base: module
     directory: ./assets/images
     auto_init: false
 
-  # windows.calculator:engine
+  # chicago.calculator:engine
   - name: engine
     kind: library.lua
     meta:
       comment: Calculator arithmetic — desktop-style, an operation applies immediately; the display puts a dot after an integer, failures are phrases; keys map to the same buttons as the mouse.
     source: file://engine.lua
 
-  # windows.calculator:window
+  # chicago.calculator:window
   #
   # The Start menu finds a `process.lua` with `meta.type: tui_desktop.window`.
   # `image` is a picture of the module's own pack (`<entry>/<file>`),
@@ -70,7 +70,7 @@ entries:
     meta:
       type: tui_desktop.window
       title: Calculator
-      image: windows.calculator:images/calculator
+      image: chicago.calculator:images/calculator
       icon: "▦"
       group: Programs
       order: 20
@@ -78,8 +78,8 @@ entries:
       resizable: false
       width: 29
       height: 16
-      pixel_render: windows.shell.sdk:render
-      pixel_state: windows.calculator:window
+      pixel_render: chicago.shell.sdk:render
+      pixel_state: chicago.calculator:window
       comment: Calculator in the Windows 95 look — standard view with memory, computes like a desktop calculator; a window on the shell SDK.
     source: file://window.lua
     method: main
@@ -87,8 +87,8 @@ entries:
     # context, the compositor's name in the process registry, sending it
     # the state. The calculator reads nothing else.
     security:
-      policies: [windows.shell.security:view_state]
+      policies: [chicago.shell.security:view_state]
     imports:
-      app: windows.shell.sdk:app
-      ui: windows.shell.sdk:ui
-      engine: windows.calculator:engine
+      app: chicago.shell.sdk:app
+      ui: chicago.shell.sdk:ui
+      engine: chicago.calculator:engine

@@ -33,11 +33,11 @@ end
 local function define_tests()
     test.describe("Calculator window", function()
         test.it("is a fixed-size window on the shell SDK in Programs, with its own calculator icon at both sizes", function()
-            local entry = assert(registry.get("windows.calculator:window"))
+            local entry = assert(registry.get("chicago.calculator:window"))
             local meta: any = entry.meta
             test.eq(table.concat({meta.type, meta.title, meta.group, meta.image, meta.window_type,
                 meta.pixel_render, meta.pixel_state}, "|"),
-                "tui_desktop.window|Calculator|Programs|windows.calculator:images/calculator|app|windows.shell.sdk:render|windows.calculator:window")
+                "tui_desktop.window|Calculator|Programs|chicago.calculator:images/calculator|app|chicago.shell.sdk:render|chicago.calculator:window")
             test.eq(tostring(meta.width) .. "x" .. tostring(meta.height), "29x16", "the outer size in cells")
             test.is_true(meta.resizable == false, "a fixed size: the frame gets no \"maximize\"")
             for _, size in ipairs({32, 16}) do

@@ -1,8 +1,8 @@
-# windows/calculator — Calculator
+# chicago/calculator — Calculator
 
 The Windows 95 calculator for the terminal desktop: a module of the Windows
-95 shell ([windows/shell](https://github.com/wippy-windows/windows) on
-[windows/tui-desktop](https://github.com/wippy-windows/tui-desktop)). An
+95 shell ([chicago/shell](https://github.com/chicago-desktop/shell) on
+[chicago/tui-desktop](https://github.com/chicago-desktop/tui-desktop)). An
 application that depends on it and runs the shell gets **Calculator** in
 Start → Programs, with its icon; nothing else to wire.
 
@@ -37,26 +37,26 @@ clipboard, so there is no Edit, and with a single view there is no View.
 
 ## Inside
 
-- `windows.calculator:engine` — the arithmetic as a pure library with no
+- `chicago.calculator:engine` — the arithmetic as a pure library with no
   screen and no runtime: `new()`, `press(state, id)`, `display(state)`,
   `format(value)` and `key(event)`, the map from a keyboard event to a
   button id. Buttons are named by identifiers (`add`, `sqrt`, `mplus`), not
   by captions; the tests exercise it without a compositor.
-- `windows.calculator:images` — the module carries its own pictures, an image
-  pack of the shell (`meta.type: windows.images`) under `assets/images/{32,16}`:
-  `calculator`, named `windows.calculator:images/calculator` by the entry and
+- `chicago.calculator:images` — the module carries its own pictures, an image
+  pack of the shell (`meta.type: chicago.images`) under `assets/images/{32,16}`:
+  `calculator`, named `chicago.calculator:images/calculator` by the entry and
   the About sheet; copied from the shell's icon set (Microsoft's artwork from
   `shell32.dll`, see `assets/images/SOURCE.md`).
-- `windows.calculator:window` — the process on the shell's SDK
-  (`windows.shell.sdk:app`): the key grid as a component tree, one layout for
+- `chicago.calculator:window` — the process on the shell's SDK
+  (`chicago.shell.sdk:app`): the key grid as a component tree, one layout for
   pixels (the original's 4×2-cell keys) and one for cells (one-row keys in
   columns as wide as their longest caption), the highlight timer and the
   About sheet. Its registry entry (`meta.type: tui_desktop.window`) is what
   the Start menu reads.
 
-The module depends on `windows/shell` (the SDK, the image packs) and
-`windows/tui-desktop` (the compositor). It reads no files and asks nothing of
-the application beyond the shell's `windows.shell.security:view_state` policy.
+The module depends on `chicago/shell` (the SDK, the image packs) and
+`chicago/tui-desktop` (the compositor). It reads no files and asks nothing of
+the application beyond the shell's `chicago.shell.security:view_state` policy.
 
 ## Developing
 
@@ -80,7 +80,7 @@ after `12 × 3.5 =`. Look at the picture: the geometry checks do not see a
 wrong colour.
 
 **A local build of the runtime fork is required**
-([wippy-windows/runtime](https://github.com/wippy-windows/runtime), branch
+([chicago-desktop/runtime](https://github.com/chicago-desktop/runtime), branch
 `wippy-projects`): the shell declares the `gfx` module, which the release
 runtime does not have, and `wippy` from PATH does not load the shell at all.
 The Makefile's `WIPPY` names the build; override it with `make test WIPPY=…`.
@@ -90,10 +90,10 @@ shell's guide, and the skill for agents in
 [skills/wippy-window-app/SKILL.md](skills/wippy-window-app/SKILL.md); the
 rules of this repository are in [AGENTS.md](AGENTS.md).
 
-Extracted from the shell (`windows.shell.calc`, windows/shell 0.1.0) into a
+Extracted from the shell (`chicago.shell.calc`, chicago/shell 0.1.0) into a
 module of its own, made from
-[the Windows module template](https://github.com/wippy-windows/module-template).
-Repository: https://github.com/wippy-windows/calculator.
+[the Windows module template](https://github.com/chicago-desktop/module-template).
+Repository: https://github.com/chicago-desktop/calculator.
 
 ## Licence
 

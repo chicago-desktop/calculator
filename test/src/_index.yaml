@@ -1,7 +1,7 @@
 version: "1.0"
 namespace: app
 
-# Standalone harness for windows/calculator. Provides the host resources
+# Standalone harness for chicago/calculator. Provides the host resources
 # the boot needs (app:db, app:processes, a gateway and a router for the
 # shell's endpoints, env storage, a permissive actor scope) and runs the
 # co-located *_test.lua suites. Excluded from publish by the module's
@@ -23,7 +23,7 @@ entries:
       type: test
       comment: "The calculator computes like the buttons, not like an expression; memory survives a clear; failures are phrases; keys reach the same buttons as the mouse; the SDK keys stand in the original's grid and show every caption whole in pixels and in cells; the About sheet."
       group: Calculator
-      suite: windows_calculator
+      suite: chicago_calculator
     source: file://engine_test.lua
     method: run
     # `gfx` and `fs` to measure the captions in the shell's bold font, read
@@ -31,12 +31,12 @@ entries:
     modules: [gfx, tty, fs]
     imports:
       test: wippy.test:test
-      ui: windows.shell.sdk:ui
-      pixels: windows.shell.theme:pixels
-      widgets: windows.shell.theme:widgets
-      chrome: windows.shell.theme:chrome
-      engine: windows.calculator:engine
-      window: windows.calculator:window
+      ui: chicago.shell.sdk:ui
+      pixels: chicago.shell.theme:pixels
+      widgets: chicago.shell.theme:widgets
+      chrome: chicago.shell.theme:chrome
+      engine: chicago.calculator:engine
+      window: chicago.calculator:window
 
   - name: window_test
     kind: function.lua
@@ -44,7 +44,7 @@ entries:
       type: test
       comment: "The calculator's process — the registry entry the Start menu reads (fixed size, in Programs, the shell's calculator icon found at both sizes), the process running the engine, and test/shots/calculator.png drawn by the shell's renderer."
       group: Calculator
-      suite: windows_calculator
+      suite: chicago_calculator
     source: file://window_test.lua
     method: run
     # Reading the entry takes `registry.get`; the icon and the shot take
@@ -52,13 +52,13 @@ entries:
     modules: [gfx, fs, registry]
     imports:
       test: wippy.test:test
-      app: windows.shell.sdk:app
-      ui: windows.shell.sdk:ui
-      render: windows.shell.sdk:render
-      rasters: windows.shell.theme:rasters
-      images: windows.shell.theme:images
-      engine: windows.calculator:engine
-      window: windows.calculator:window
+      app: chicago.shell.sdk:app
+      ui: chicago.shell.sdk:ui
+      render: chicago.shell.sdk:render
+      rasters: chicago.shell.theme:rasters
+      images: chicago.shell.theme:images
+      engine: chicago.calculator:engine
+      window: chicago.calculator:window
 
   - name: shots
     kind: fs.directory
@@ -124,7 +124,7 @@ entries:
     kind: ns.dependency
     meta:
       comment: The module under test; its source is replaced with ../ in .wippy.yaml.
-    component: "windows/calculator"
+    component: "chicago/calculator"
 
   - name: calculator_harness.dep.migration
     version: "*"
